@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">IMDLivraria</string>
+    <string name="cadastrar">CADASTRAR</string>
+    <string name="lista">LISTAR</string>
+    <string name="excluir">EXCLUIR</string>
+    <string name="atualizar">ATUALIZAR LIVROS</string>
+    <string name="navegar"> O QUE DESEJA FAZER?</string>
+    <string name="entrar"> ENTRAR</string>
+    <string name="cadastro"> Criar conta</string>
+    <string name="telacadastro"> CADASTRE-SE</string>
+    <string name="guardacadastro"> CADASTRAR</string>
+    <string name="topo_cadastro"> CADASTRAR LIVRO</string>
+    <string name="topo_excluir"> EXCLUIR LIVRO</string>
+    <string name="botão_salvar"> SALVAR </string>
+    <string name="botão_excluir"> EXCLUIR </string>
+</resources>

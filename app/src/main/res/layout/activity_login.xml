@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/blackground"
+    tools:context=".LoginActivity">
+
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="270dp"
+        android:layout_height="190dp"
+        android:src="@drawable/img"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="42dp" />
+
+    <View
+        android:id="@+id/ContainerComponents"
+        style="@style/ContainerComponents"
+        android:layout_marginTop="28dp"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logo" />
+
+    <EditText
+        android:id="@+id/nome"
+        style="@style/Edit_text"
+        android:hint="login"
+        app:layout_constraintStart_toStartOf="@id/ContainerComponents"
+        app:layout_constraintEnd_toEndOf="@+id/ContainerComponents"
+        app:layout_constraintTop_toTopOf="@+id/ContainerComponents"
+
+
+        />
+
+    <EditText
+        android:id="@+id/senha"
+        style="@style/Edit_text"
+        android:hint="senha"
+        android:drawableRight="@drawable/ic_eye"
+        app:layout_constraintStart_toStartOf="@id/ContainerComponents"
+        app:layout_constraintEnd_toEndOf="@+id/ContainerComponents"
+        app:layout_constraintTop_toBottomOf="@id/nome" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/BtEntrar"
+        style="@style/button"
+        android:text="@string/entrar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/senha"
+        />
+    <TextView
+        android:id="@+id/cadastro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cadastro"
+        android:textColor="@color/white"
+        android:textStyle="normal"
+        android:textSize="25dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="30dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintTop_toBottomOf="@id/BtEntrar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

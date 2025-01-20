@@ -1,12 +1,17 @@
 package com.example.imdlivraria
 
+import android.annotation.SuppressLint
+import android.bluetooth.BluetoothAssignedNumbers
 import android.os.Bundle
 import android.util.Log
+import android.widget.Adapter
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.ReportFragment.Companion.reportFragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,37 +23,50 @@ class ListaActivity : AppCompatActivity() {
 
 
     private lateinit var binding: ActivityListaBinding
-    private lateinit var bancolivros: banco
-   // private lateinit var livroAdapter: LivroAdapter
-    //private lateinit var recyclerView: RecyclerView
+    private lateinit var bancoLivros: banco
+    private lateinit var livroAdapter: LivroAdapter
+    private var livrosList = ArrayList<Livros>()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityListaBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        initRecyclerView()
+
+
+        bancoLivros = banco(this)
+
+        // Recuperar o extra para verificar se houve atualização
+        val houveAtualizacao = intent.getBooleanExtra("atualizacao", false)
+
+        //Inicializar a lista de livros e o adapter
+        livrosList = bancoLivros.listAll()
+        binding.lista.layoutManager = LinearLayoutManager(this)
+        livroAdapter = LivroAdapter(livrosList)
+        binding.lista.adapter = livroAdapter
+
+
+
+        if (houveAtualizacao) {
+            // Limpar e atualizar a lista de livros
+            livrosList.clear()
+            livrosList.addAll(bancoLivros.listAll())
+            livroAdapter.notifyDataSetChanged() // Atualizar o RecyclerView
+        }
+
+
+
+
     }
 
-    fun initRecyclerView() {
-        val recyclerView = binding.lista
-
-        // Recupera os livros do banco de dados
-        val livros = bancolivros.listAll()
-
-        // Inicializa o Adapter com os dados do banco de dados
-        val livroAdapter = LivroAdapter(livros)
-
-        // Configura o RecyclerView
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = livroAdapter
-
-        // Adiciona a linha de separação entre os itens da lista
-        val decoration = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
-        recyclerView.addItemDecoration(decoration)
+    override fun onResume() {
+        super.onResume()
+        livrosList.clear()
+        livrosList.addAll(bancoLivros.listAll())
+        livroAdapter.notifyDataSetChanged()
     }
-
-
-
 
 }
+
+
